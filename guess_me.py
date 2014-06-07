@@ -94,6 +94,7 @@ def remove_user(username):
 
 def start_new_game(username):
     session['the_number'] = random.randrange(MAX_NUMBER + 1)
+    users_data[username]["games_played"] += 1
     users_data[username]['current_guesses'] = 0
 
 
@@ -104,11 +105,12 @@ def finish_game(username):
     user_dict["average_guesses"] = new_average(user_dict["average_guesses"],
                                                user_dict["current_guesses"],
                                                user_dict["games_played"])
-    user_dict["games_played"] += 1
+    user_dict["current_guesses"] = 0
     if user_dict["current_guesses"] < user_dict["best_guesses"]:
         user_dict["best_guesses"] = user_dict["current_guesses"]
 
 
+app.secret_key = 'noOneWillGuessThis'  # change this before deploying to production
+
 if __name__ == "__main__":
-    app.secret_key = 'noOneWillGuessThis'
     app.run(debug=True)
