@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand active" href="/">Guess Me</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+      {% if 'username' in session %}
+        <li class="nav navbar-text">Hi, {{ session['username'] }}</li>
+      {% endif %}
+        <li><a href="/dashboard">Dashboard</a></li>
+      {% if 'username' in session %}
+        <li><a href="/logout">Log Out</a></li>
+      {% else %}
+        <li><a href="/login">Log In</a></li>
+      {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    {% block body %}{% endblock %}
+  </div>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

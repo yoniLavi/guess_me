@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h3>The computer randomly chose a number between 0 and {{MAX_NUMBER}}.</h3>
+    <h3>Can you guess it?</h3>
+    <br>
+    <form action="/guess" method="get">
+        <input autofocus type="number" min="0" max="{{MAX_NUMBER}}" name="guessed_number" value="{{last_guess}}" >
+        <input type="submit" value="Guess">
+    {% if current_guesses %}
+        <div class="text-info">{{current_guesses}} guesses so far</div>
+    {% endif %}
+    </form>
+
+    {% if not last_guess %}
+    {% elif last_guess > session['the_number'] %}
+        <h3 class="alert alert-danger">Too high</h3>
+    {% else %}
+        <h3 class="alert alert-info">Too low</h3>
+    {% endif %}
+{% endblock %}
