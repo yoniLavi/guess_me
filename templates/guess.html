@@ -5,7 +5,7 @@
     <h3>Can you guess it?</h3>
     <br>
     <form action="/guess" method="get">
-        <input autofocus type="number" min="0" max="{{MAX_NUMBER}}" name="guessed_number" value="{{last_guess}}" >
+        <input autofocus type="number" min="0" max="{{MAX_NUMBER}}" name="guessed_number" value="{{last_guess or 0}}" >
         <input type="submit" value="Guess">
     {% if current_guesses %}
         <div class="text-info">{{current_guesses}} guesses so far</div>

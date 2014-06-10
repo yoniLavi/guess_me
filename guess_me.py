@@ -23,7 +23,8 @@ def login():
         if new_username in users_data:
             return render_template('invalid_username.html', username=new_username), 401
 
-        create_new_user(new_username)
+        if new_username:  # not empty
+            create_new_user(new_username)
         return redirect(url_for('index'))
 
     return render_template('login.html')
@@ -94,7 +95,6 @@ def remove_user(username):
 
 def start_new_game(username):
     session['the_number'] = random.randrange(MAX_NUMBER + 1)
-    users_data[username]["games_played"] += 1
     users_data[username]['current_guesses'] = 0
 
 
@@ -105,7 +105,7 @@ def finish_game(username):
     user_dict["average_guesses"] = new_average(user_dict["average_guesses"],
                                                user_dict["current_guesses"],
                                                user_dict["games_played"])
-    user_dict["current_guesses"] = 0
+    users_data[username]["games_played"] += 1
     if user_dict["current_guesses"] < user_dict["best_guesses"]:
         user_dict["best_guesses"] = user_dict["current_guesses"]
 
