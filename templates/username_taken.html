@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h3>The username <b>{{username}}</b> is already taken. Try to <a href="/login">Log in</a> with a different username.</h3>
+    <p>(Note: usernames are only reset when restarting the server)</p>
+{% endblock %}

@@ -3,23 +3,27 @@
 {% block body %}
     <br>
     <table class="table table-bordered">
-        <tr class="info">
-            <td>Name</td>
-            <td>Best Guess Count</td>
-            <td>Average Guess Count</td>
-            <td>Games Won</td>
-            <td>Guess Count in Current Game</td>
-        </tr>
-    {% for user, data in users_data %}
-        <tr>
-            <td>{{ user }}</td>
-            <td>{{ data.best_guesses }}</td>
-            <td>{{ data.average_guesses }}</td>
-            <td>{{ data.games_played }}</td>
-            <td>{{ data.current_guesses }}</td>
-        </tr>
-    {% endfor %}
+        <thead>
+            <tr class="info">
+                <td>Name</td>
+                <td>Best Guess Count</td>
+                <td>Average Guess Count</td>
+                <td>Games Won</td>
+                <td>Guess Count in Current Game</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user, data in users_data %}
+            <tr>
+                <td>{{ user }}</td>
+                <td>{{ data.best_guesses }}</td>
+                <td>{{ data.average_guesses }}</td>
+                <td>{{ data.games_played }}</td>
+                <td>{{ data.current_guesses }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     <br>
-    <a class="btn btn-large btn-primary" href="/guess">Back to the game</a>
+    <a class="btn btn-large btn-primary" href="{{url_for('guess')}}">Back to the game</a>
 {% endblock %}

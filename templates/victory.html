@@ -2,7 +2,5 @@
 
 {% block body %}
     <h2 class="alert alert-success">Awesome, {{ username }}! You won the game after {{ guesses }} guesses!</h2>
-    <a href="/guess">
-        <button class="btn btn-large btn-primary" autofocus>Start another game</button>
-    </a>
+    <a href="/guess" class="btn btn-large btn-primary" autofocus>Start another game</a>
 {% endblock %}
